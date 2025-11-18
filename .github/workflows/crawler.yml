@@ -2,9 +2,19 @@ name: Hot News Crawler
 
 on:
   schedule:
-    # 我们使用的是 github 官方提供的资源来进行的推送，而每个账号的资源是限额的，为了不被官方判定为滥用而面临封号的风险，不建议比半小时更低
-    - cron: "0 * * * *" # 每小时整点运行一次(实际有偏差) 或者 "*/30 * * * *" (每半小时执行一次) 或者 "*/30 0-14 * * *"(每天早上 8 点到晚上 10 点期间，每半小时运行一次)
-  workflow_dispatch:
+    # 1) 06:00  Beijing  -> 22:00 UTC
+    - cron: "0 22 * * *"
+    # 2) 10:00  Beijing  -> 02:00 UTC
+    - cron: "0 2 * * *"
+    # 3) 12:00  Beijing  -> 04:00 UTC
+    - cron: "0 4 * * *"
+    # 4) 13:30  Beijing  -> 05:30 UTC
+    - cron: "30 5 * * *"
+    # 5) 15:00  Beijing  -> 07:00 UTC
+    - cron: "0 7 * * *"
+    # 6) 18:00-23:00  Beijing  -> 10-15 点整
+    - cron: "0 10-15 * * *"
+  workflow_dispatch:        # 保留手动按钮
 
 # 添加权限设置
 permissions:
